@@ -12,6 +12,16 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map)
 
 
+// define icons
+
+let bridgeIcon = L.icon({
+    iconUrl: 'bridge.png',
+
+    iconSize:     [19, 47], // size of the icon
+    iconAnchor:   [10, 26], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -35] // point from which the popup should open relative to the iconAnchor
+});
+
 // array full of bridge data
 
 bridges = [
@@ -32,7 +42,7 @@ bridges = [
 
 bridges.forEach(function (bridge) {
     let popup = `${bridge.name}<br>${bridge.cityState}<br>Span: ${bridge.span} meters`
-    let bridgeMarker = L.marker(bridge.coordinates)
+    let bridgeMarker = L.marker(bridge.coordinates, {icon: bridgeIcon})
         .bindPopup(popup)
         .addTo(map)
 })
